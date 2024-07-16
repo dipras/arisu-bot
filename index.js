@@ -1,5 +1,5 @@
 import { Client, GatewayIntentBits, Events } from "discord.js";
-import { arisuMisuhMp4, arisuNoMisuh, momoiNig } from "./assets";
+import { arisuMisuhMp4, arisuNoMisuh, momoiNig, arisuHikari, momoiSatria } from "./assets";
 const token = process.env.SECRET_TOKEN;
 const client = new Client({
   intents: [
@@ -21,6 +21,13 @@ client.on(Events.MessageCreate, (msg) => {
     case "nig":
     case "nega":
       msg.channel.send(momoiNig);
+      return;
+    case "hikari":
+      msg.channel.send(arisuHikari);
+      return;
+    case "biji":
+    case "satria":
+      msg.channel.send(momoiSatria);
       return;
   }
 
