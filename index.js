@@ -12,6 +12,12 @@ client.on(Events.ClientReady, () => {
   console.log(`Arisu is ready`);
 });
 
+const chooseVariaties = [
+  "Arisu pilih",
+  "Tentu Arisu suka",
+  "Arisu sangat suka"
+]
+
 client.on(Events.MessageCreate, (msg) => {
   switch (msg.content.toLowerCase()) {
     case "arisu":
@@ -43,6 +49,16 @@ client.on(Events.MessageCreate, (msg) => {
     msg.channel.send(`<@${userTarget}> asu kamu`);
     msg.channel.send(arisuMisuhMp4);
     return;
+  } else if (msg.content.includes("arisu pilih")) {
+    let temp = msg.content.replace("arisu pilih", "").trim();
+    let answers = temp.split("|");
+    if (answers[0]) {
+      var item = answers[Math.floor(Math.random() * answers.length)].trim();
+      var text = chooseVariaties[Math.floor(Math.random() * answers.length)];
+      msg.channel.send(`${text} ${item}`);
+    } else {
+      msg.channel.send("Format invalid");
+    }
   }
 });
 
